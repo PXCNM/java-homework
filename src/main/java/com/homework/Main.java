@@ -165,7 +165,7 @@ public class Main {
         }
 
         if (algorithm == null) {
-            algorithm = algorithms.get("quicksort");
+            algorithm = algorithms.get("quick");
         }
         if (descending) {
             comparator = comparator.reversed();
