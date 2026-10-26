@@ -21,12 +21,14 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         List<User> users = new ArrayList<>();
         Map<String, SortAlgorithm<User>> algorithms = Map.of(
-            "quicksort", new Quicksort<>(),
-            "bubblesort", new Bubblesort<>()
+            "quick", new Quicksort<>(),
+            "bubble", new Bubblesort<>()
         );
 
         while (true) {
             printMenu();
+
+            if (!scanner.hasNextLine()) return;
 
             String input = scanner.nextLine().trim();
             if (input.equalsIgnoreCase("exit")) {
@@ -67,6 +69,9 @@ public class Main {
             try (BufferedReader reader = Files.newBufferedReader(Path.of(parts[1]))) {
                 String line;
                 while ( (line = reader.readLine()) != null ) {
+                    if (line.isBlank()) {
+                        continue;
+                    }
                     addUser(users, line);
                 }
             } catch (IOException | InvalidPathException e) {
@@ -87,7 +92,7 @@ public class Main {
             return;
         }
         if (users.stream().anyMatch(u -> u.getId().equals(user.getId()))) {
-            System.out.println("User with id " + user.getId() + "already exists");
+            System.out.println("User with id " + user.getId() + " already exists");
             return;
         }
         users.add(user);

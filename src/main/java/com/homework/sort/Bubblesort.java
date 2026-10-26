@@ -16,8 +16,8 @@ public class Bubblesort<T> implements SortAlgorithm<T> {
             for (int j = 0; j < result.size() - i - 1; j++) {
                 if (comparator.compare(result.get(j), result.get(j + 1)) > 0) {
                     T tmp = result.get(j);
-                    result.add(j, result.get(j + 1));
-                    result.add(j + 1, tmp);
+                    result.set(j, result.get(j + 1));
+                    result.set(j + 1, tmp);
                     swapped = true;
                 }
             }
